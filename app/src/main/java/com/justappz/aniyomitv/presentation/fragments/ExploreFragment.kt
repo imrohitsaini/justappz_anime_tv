@@ -61,7 +61,7 @@ class ExploreFragment : Fragment() {
 
     //region init
     private fun init() {
-        val spanCount = if (resources.configuration.smallestScreenWidthDp >= 600) 5 else 3
+        val spanCount = if (resources.configuration.smallestScreenWidthDp >= 600) 5 else 4
         val layoutManager = GridLayoutManager(parentActivity, spanCount, GridLayoutManager.VERTICAL, false)
 
         animeAdapter = AnimeAdapter(emptyList()).apply {

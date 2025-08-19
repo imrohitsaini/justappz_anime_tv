@@ -44,7 +44,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     //region init
     private fun init() {
         binding.tvHome.setOnClickListener(this)
-        binding.tvExtensions.setOnClickListener(this)
+        binding.tvExplore.setOnClickListener(this)
         binding.tvSettings.setOnClickListener(this)
         loadFragment(HomeFragment(), binding.tvHome)
     }
@@ -58,8 +58,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                     loadFragment(HomeFragment(), binding.tvHome)
                 }
 
-                binding.tvExtensions -> {
-                    loadFragment(ExploreFragment(), binding.tvExtensions)
+                binding.tvExplore -> {
+                    loadFragment(ExploreFragment(), binding.tvExplore)
                 }
 
                 binding.tvSettings -> {
@@ -74,7 +74,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     private fun loadFragment(fragment: Fragment, selectedView: View) {
         if (selectedView.isSelected) return
         binding.tvHome.isSelected = selectedView == binding.tvHome
-        binding.tvExtensions.isSelected = selectedView == binding.tvExtensions
+        binding.tvExplore.isSelected = selectedView == binding.tvExplore
         binding.tvSettings.isSelected = selectedView == binding.tvSettings
         supportFragmentManager.beginTransaction()
             .replace(binding.fragmentContainer.id, fragment)

@@ -6,7 +6,8 @@
     android:layout_height="wrap_content"
     android:paddingVertical="@dimen/_16dp"
     android:paddingHorizontal="@dimen/_8dp"
-    tools:background="@color/color_background">
+    android:background="@drawable/focus_selector"
+    tools:background="@color/black">
 
     <androidx.constraintlayout.utils.widget.ImageFilterView
         android:id="@+id/ivAnimeThumbnail"
