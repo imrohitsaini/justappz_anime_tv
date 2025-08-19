@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="color_primary">#1E88E5</color>
+    <!-- Slightly darker for focused state -->
+    <color name="color_primary_dark">#1565C0</color>
+
+    <!-- Accent color for border/glow when focused -->
+    <color name="color_accent">#FFD700</color>
+
+    <color name="color_background">#000000</color>
+
+    <color name="white">#ffffff</color>
+</resources>
