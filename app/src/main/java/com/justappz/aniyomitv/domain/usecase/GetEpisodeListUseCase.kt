@@ -1,6 +1,6 @@
 package com.justappz.aniyomitv.domain.usecase
 
-import com.justappz.aniyomitv.Constants
+import com.justappz.aniyomitv.constants.Constants
 import com.justappz.aniyomitv.domain.model.episodes.EpisodesDomain
 import com.justappz.aniyomitv.domain.model.episodes.EpisodesRequestDomain
 import com.justappz.aniyomitv.domain.repo.AllAnimeRepo

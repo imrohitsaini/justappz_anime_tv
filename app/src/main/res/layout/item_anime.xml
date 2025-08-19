@@ -31,7 +31,7 @@
         android:minLines="1"
         android:paddingStart="@dimen/_4dp"
         android:paddingBottom="@dimen/_4dp"
-        android:background="@color/black_alpha15"
+        android:background="@drawable/bg_gradient_text"
         android:fontFamily="@font/opensans_semicondensed_bold"
         app:layout_constraintEnd_toEndOf="@id/ivAnimeThumbnail"
         app:layout_constraintStart_toStartOf="@id/ivAnimeThumbnail"

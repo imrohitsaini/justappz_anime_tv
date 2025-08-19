@@ -17,10 +17,10 @@
         android:theme="@style/Theme.MyTvApp"
         tools:targetApi="33">
         <activity
-            android:name=".presentation.EpisodesActivity"
+            android:name=".presentation.activities.EpisodesActivity"
             android:exported="false" />
         <activity
-            android:name=".presentation.MainActivity"
+            android:name=".presentation.activities.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

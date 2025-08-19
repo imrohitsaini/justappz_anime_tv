@@ -1,4 +1,4 @@
-package com.justappz.aniyomitv
+package com.justappz.aniyomitv.constants
 
 object Constants {
     const val POPULAR_ANIME_QUERY = """

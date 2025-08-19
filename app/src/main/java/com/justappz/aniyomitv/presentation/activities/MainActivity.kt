@@ -1,4 +1,4 @@
-package com.justappz.aniyomitv.presentation
+package com.justappz.aniyomitv.presentation.activities
 
 import android.app.Activity
 import android.os.Bundle

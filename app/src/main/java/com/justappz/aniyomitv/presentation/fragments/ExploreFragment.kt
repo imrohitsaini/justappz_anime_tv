@@ -14,13 +14,14 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.GridLayoutManager
-import com.justappz.aniyomitv.IntentKeys
+import com.justappz.aniyomitv.constants.IntentKeys
 import com.justappz.aniyomitv.databinding.FragmentExploreBinding
 import com.justappz.aniyomitv.domain.model.anime.AnimeDomain
 import com.justappz.aniyomitv.domain.model.anime.AnimeUiState
-import com.justappz.aniyomitv.presentation.EpisodesActivity
+import com.justappz.aniyomitv.presentation.activities.EpisodesActivity
 import com.justappz.aniyomitv.presentation.adapter.AnimeAdapter
 import com.justappz.aniyomitv.presentation.viewmodel.AnimeViewModel
+import com.justappz.aniyomitv.utils.DisplayUtils
 import com.justappz.aniyomitv.utils.ToastUtils
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -62,8 +63,7 @@ class ExploreFragment : Fragment() {
 
     //region init
     private fun init() {
-        Log.d("ExploreFragment", "SW ${resources.configuration.smallestScreenWidthDp}")
-        val spanCount = if (resources.configuration.smallestScreenWidthDp >= 540) 5 else 4
+        val spanCount = DisplayUtils.calculateSpanCount(parentActivity, 150, 2)
         val layoutManager = GridLayoutManager(parentActivity, spanCount, GridLayoutManager.VERTICAL, false)
 
         animeAdapter = AnimeAdapter(emptyList()).apply {

@@ -1,4 +1,4 @@
-package com.justappz.aniyomitv.presentation
+package com.justappz.aniyomitv.presentation.activities
 
 import android.app.Activity
 import android.os.Bundle
@@ -12,7 +12,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.GridLayoutManager
-import com.justappz.aniyomitv.IntentKeys
+import com.justappz.aniyomitv.constants.IntentKeys
 import com.justappz.aniyomitv.databinding.ActivityEpisodesBinding
 import com.justappz.aniyomitv.domain.model.episodes.EpisodesDomain
 import com.justappz.aniyomitv.domain.model.episodes.EpisodesUiState
