@@ -28,4 +28,15 @@ object Constants {
           }
         }
     """
+
+    const val EPISODE_QUERY = """
+        query (${'$'}_id: String!) {
+            show(
+                _id: ${'$'}_id
+            ) {
+                _id
+                availableEpisodesDetail
+            }
+        }
+    """
 }

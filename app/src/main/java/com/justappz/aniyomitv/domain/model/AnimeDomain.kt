@@ -2,7 +2,7 @@ package com.justappz.aniyomitv.domain.model
 
 import com.google.gson.annotations.SerializedName
 
-data class Anime(
+data class AnimeDomain(
     @SerializedName("_id") var id: String? = null,
     @SerializedName("name") var name: String? = null,
     @SerializedName("thumbnail") var thumbnail: String? = null,

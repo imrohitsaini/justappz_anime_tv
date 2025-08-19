@@ -1,6 +1,6 @@
-package com.justappz.aniyomitv.data.remote.model
+package com.justappz.aniyomitv.domain.model
 
-data class AllAnimeRequest(
+data class AnimeRequestDomain(
     val query: String,
     val variables: Variables
 ) {

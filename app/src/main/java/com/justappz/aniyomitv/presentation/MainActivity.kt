@@ -72,6 +72,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     //region loadFragment
     private fun loadFragment(fragment: Fragment, selectedView: View) {
+        if (selectedView.isSelected) return
         binding.tvHome.isSelected = selectedView == binding.tvHome
         binding.tvExtensions.isSelected = selectedView == binding.tvExtensions
         binding.tvSettings.isSelected = selectedView == binding.tvSettings

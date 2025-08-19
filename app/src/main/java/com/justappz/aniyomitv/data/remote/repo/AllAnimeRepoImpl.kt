@@ -5,22 +5,36 @@ import com.google.gson.Gson
 import com.justappz.aniyomitv.data.remote.ApiService
 import com.justappz.aniyomitv.data.remote.mapper.toData
 import com.justappz.aniyomitv.data.remote.mapper.toDomain
-import com.justappz.aniyomitv.domain.model.Anime
-import com.justappz.aniyomitv.domain.model.AnimeRequest
+import com.justappz.aniyomitv.domain.model.AnimeDomain
+import com.justappz.aniyomitv.domain.model.AnimeRequestDomain
+import com.justappz.aniyomitv.domain.model.EpisodesDomain
+import com.justappz.aniyomitv.domain.model.EpisodesRequestDomain
 import com.justappz.aniyomitv.domain.repo.AllAnimeRepo
-import org.json.JSONArray
 import javax.inject.Inject
 
 class AllAnimeRepoImpl @Inject constructor(
     private val apiService: ApiService
 ) : AllAnimeRepo {
 
-    override suspend fun getAnimeList(animeRequest: AnimeRequest): List<Anime> {
-        val json = Gson().toJson(animeRequest.toData())
+    override suspend fun getAnimeList(animeRequestDomain: AnimeRequestDomain): List<AnimeDomain> {
+        val json = Gson().toJson(animeRequestDomain.toData())
         Log.d("AnimeRepo", "Request JSON: $json")
-        val response = apiService.getPopularAnime(animeRequest.toData())
+        val response = apiService.getPopularAnime(animeRequestDomain.toData())
         Log.d("AnimeRepo", "Response: ${Gson().toJson(response)}")
         return response.toDomain()
+    }
+
+    override suspend fun getEpisodesList(episodesRequestDomain: EpisodesRequestDomain): EpisodesDomain {
+        val json = Gson().toJson(episodesRequestDomain.toData())
+        Log.d("AnimeRepo", "Episodes Request JSON: $json")
+        val response = apiService.getEpisodes(episodesRequestDomain.toData())
+        Log.d("AnimeRepo", "Episodes Response: ${Gson().toJson(response)}")
+        var episodes = response.toDomain()
+        if (episodes == null) {
+            Log.e("AnimeRepo", "Episodes response is null")
+            episodes = EpisodesDomain(sub = emptyList(), dub = emptyList(), raw = emptyList())
+        }
+        return episodes
     }
 
 }

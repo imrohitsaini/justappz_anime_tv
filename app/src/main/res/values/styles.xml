@@ -21,9 +21,4 @@
         <!-- Optional: explicitly set toast text color (for pre-Android 12) -->
         <item name="android:textColor">@android:color/white</item>
     </style>
-
-    <style name="RoundedImage">
-        <item name="cornerFamily">rounded</item>
-        <item name="cornerSize">@dimen/_8dp</item>
-    </style>
 </resources>

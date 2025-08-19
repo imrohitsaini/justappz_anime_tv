@@ -8,16 +8,16 @@
     android:paddingHorizontal="@dimen/_8dp"
     tools:background="@color/color_background">
 
-    <com.google.android.material.imageview.ShapeableImageView
+    <androidx.constraintlayout.utils.widget.ImageFilterView
         android:id="@+id/ivAnimeThumbnail"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:scaleType="centerCrop"
+        app:round="@dimen/_8dp"
         app:layout_constraintDimensionRatio="3:4"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:shapeAppearanceOverlay="@style/RoundedImage"
         tools:src="@mipmap/ic_launcher" />
 
     <TextView

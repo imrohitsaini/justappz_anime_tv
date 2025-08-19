@@ -11,10 +11,11 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import androidx.recyclerview.widget.GridLayoutManager
 import com.justappz.aniyomitv.databinding.FragmentExploreBinding
-import com.justappz.aniyomitv.domain.model.Anime
+import com.justappz.aniyomitv.domain.model.AnimeDomain
 import com.justappz.aniyomitv.domain.model.AnimeUiState
+import com.justappz.aniyomitv.domain.model.EpisodesUiState
 import com.justappz.aniyomitv.presentation.adapter.AnimeAdapter
 import com.justappz.aniyomitv.presentation.viewmodel.AnimeViewModel
 import com.justappz.aniyomitv.utils.ToastUtils
@@ -27,8 +28,9 @@ class ExploreFragment : Fragment() {
     //region variables
     private var _binding: FragmentExploreBinding? = null
     private val binding get() = _binding!!
-    private lateinit var activity: Activity
+    private lateinit var parentActivity: Activity
     private val viewModel: AnimeViewModel by viewModels()
+    private lateinit var animeAdapter: AnimeAdapter
     //endregion
 
     //region onCreateView
@@ -50,7 +52,32 @@ class ExploreFragment : Fragment() {
 
     //region onViewCreated
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        activity = requireActivity()
+        parentActivity = requireActivity()
+        init()
+    }
+    //endregion
+
+    //region init
+    private fun init() {
+        val spanCount = if (resources.configuration.smallestScreenWidthDp >= 600) 5 else 3
+        val layoutManager = GridLayoutManager(parentActivity, spanCount, GridLayoutManager.VERTICAL, false)
+
+        animeAdapter = AnimeAdapter(emptyList()).apply {
+            onItemClick = { anime, _ ->
+                viewModel.fetchEpisodesList(anime.id!!)
+            }
+        }
+
+        binding.rvAnime.layoutManager = layoutManager
+        binding.rvAnime.adapter = animeAdapter
+
+        collectAnimeList()
+        collectEpisodesList()
+        viewModel.fetchAnimeList()
+    }
+
+    //region collectAnimeList
+    private fun collectAnimeList() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.uiState.collect { state ->
@@ -68,29 +95,46 @@ class ExploreFragment : Fragment() {
 
                         is AnimeUiState.Error -> {
                             binding.progessbarLoading.visibility = View.GONE
-                            ToastUtils.showToast(state.message, activity)
+                            ToastUtils.showToast(state.message, parentActivity)
                         }
                     }
                 }
             }
         }
-        viewModel.fetchAnimeList()
     }
     //endregion
 
     //region setAnimeList
-    private fun setAnimeList(animeList: List<Anime>) {
-        val spanCount = if (resources.configuration.smallestScreenWidthDp >= 600) 5 else 3
-
-        val adapter = AnimeAdapter(animeList)
-
-        val layoutManager = StaggeredGridLayoutManager(spanCount, StaggeredGridLayoutManager.VERTICAL)
-        layoutManager.gapStrategy = StaggeredGridLayoutManager.GAP_HANDLING_MOVE_ITEMS_BETWEEN_SPANS
-
-        binding.rvAnime.layoutManager = layoutManager
-        binding.rvAnime.adapter = adapter
+    private fun setAnimeList(animeDomainList: List<AnimeDomain>) {
+        animeAdapter.updateList(animeDomainList) // Or submitList if using ListAdapter
         binding.rvAnime.isVisible = true
+    }
+    //endregion
 
+    //region collectEpisodesList
+    private fun collectEpisodesList() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.uiEpisodesState.collect { state ->
+                    when (state) {
+                        is EpisodesUiState.Loading -> {
+                            // show loading indicator
+//                            binding.progessbarLoading.visibility = View.VISIBLE
+                        }
+
+                        is EpisodesUiState.Success -> {
+//                            binding.progessbarLoading.visibility = View.GONE
+                            val episodeList = state.data
+                        }
+
+                        is EpisodesUiState.Error -> {
+//                            binding.progessbarLoading.visibility = View.GONE
+                            ToastUtils.showToast(state.message, parentActivity)
+                        }
+                    }
+                }
+            }
+        }
     }
     //endregion
 
