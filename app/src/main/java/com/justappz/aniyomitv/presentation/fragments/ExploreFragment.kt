@@ -3,6 +3,7 @@ package com.justappz.aniyomitv.presentation.fragments
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -61,7 +62,8 @@ class ExploreFragment : Fragment() {
 
     //region init
     private fun init() {
-        val spanCount = if (resources.configuration.smallestScreenWidthDp >= 600) 5 else 4
+        Log.d("ExploreFragment", "SW ${resources.configuration.smallestScreenWidthDp}")
+        val spanCount = if (resources.configuration.smallestScreenWidthDp >= 540) 5 else 4
         val layoutManager = GridLayoutManager(parentActivity, spanCount, GridLayoutManager.VERTICAL, false)
 
         animeAdapter = AnimeAdapter(emptyList()).apply {
