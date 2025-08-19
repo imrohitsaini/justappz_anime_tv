@@ -2,8 +2,8 @@ package com.justappz.aniyomitv.data.remote.mapper
 
 import com.justappz.aniyomitv.data.remote.model.anime.AllAnimeRequest
 import com.justappz.aniyomitv.data.remote.model.episodes.EpisodesRequest
-import com.justappz.aniyomitv.domain.model.AnimeRequestDomain
-import com.justappz.aniyomitv.domain.model.EpisodesRequestDomain
+import com.justappz.aniyomitv.domain.model.anime.AnimeRequestDomain
+import com.justappz.aniyomitv.domain.model.episodes.EpisodesRequestDomain
 
 fun AnimeRequestDomain.toData(): AllAnimeRequest {
     return AllAnimeRequest(

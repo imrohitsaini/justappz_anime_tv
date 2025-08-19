@@ -1,4 +1,4 @@
-package com.justappz.aniyomitv.domain.model
+package com.justappz.aniyomitv.domain.model.anime
 
 sealed class AnimeUiState {
     object Loading : AnimeUiState()

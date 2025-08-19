@@ -13,9 +13,9 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.GridLayoutManager
 import com.justappz.aniyomitv.databinding.FragmentExploreBinding
-import com.justappz.aniyomitv.domain.model.AnimeDomain
-import com.justappz.aniyomitv.domain.model.AnimeUiState
-import com.justappz.aniyomitv.domain.model.EpisodesUiState
+import com.justappz.aniyomitv.domain.model.anime.AnimeDomain
+import com.justappz.aniyomitv.domain.model.anime.AnimeUiState
+import com.justappz.aniyomitv.domain.model.episodes.EpisodesUiState
 import com.justappz.aniyomitv.presentation.adapter.AnimeAdapter
 import com.justappz.aniyomitv.presentation.viewmodel.AnimeViewModel
 import com.justappz.aniyomitv.utils.ToastUtils

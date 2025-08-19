@@ -2,8 +2,8 @@ package com.justappz.aniyomitv.presentation.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.justappz.aniyomitv.domain.model.AnimeUiState
-import com.justappz.aniyomitv.domain.model.EpisodesUiState
+import com.justappz.aniyomitv.domain.model.anime.AnimeUiState
+import com.justappz.aniyomitv.domain.model.episodes.EpisodesUiState
 import com.justappz.aniyomitv.domain.usecase.GetAnimeListUseCase
 import com.justappz.aniyomitv.domain.usecase.GetEpisodeListUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel

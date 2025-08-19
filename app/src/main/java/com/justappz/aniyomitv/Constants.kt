@@ -30,13 +30,21 @@ object Constants {
     """
 
     const val EPISODE_QUERY = """
-        query (${'$'}_id: String!) {
-            show(
-                _id: ${'$'}_id
-            ) {
-                _id
-                availableEpisodesDetail
-            }
+    query (${'$'}_id: String!) {
+        show(
+            _id: ${'$'}_id
+        ) {
+            _id
+            thumbnail
+            description
+            type
+            season
+            score
+            genres
+            status
+            studios
+            availableEpisodesDetail
         }
-    """
+    }
+"""
 }

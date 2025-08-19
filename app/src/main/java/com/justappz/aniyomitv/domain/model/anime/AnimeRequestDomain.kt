@@ -1,4 +1,4 @@
-package com.justappz.aniyomitv.domain.model
+package com.justappz.aniyomitv.domain.model.anime
 
 data class AnimeRequestDomain(
     val query: String,

@@ -1,4 +1,4 @@
-package com.justappz.aniyomitv.domain.model
+package com.justappz.aniyomitv.domain.model.episodes
 
 sealed class EpisodesUiState {
     object Loading : EpisodesUiState()

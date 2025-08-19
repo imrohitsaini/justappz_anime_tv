@@ -4,7 +4,7 @@ import com.bumptech.glide.Glide
 import com.justappz.aniyomitv.R
 import com.justappz.aniyomitv.base.BaseRecyclerViewAdapter
 import com.justappz.aniyomitv.databinding.ItemAnimeBinding
-import com.justappz.aniyomitv.domain.model.AnimeDomain
+import com.justappz.aniyomitv.domain.model.anime.AnimeDomain
 
 class AnimeAdapter(
     animeDomains: List<AnimeDomain>

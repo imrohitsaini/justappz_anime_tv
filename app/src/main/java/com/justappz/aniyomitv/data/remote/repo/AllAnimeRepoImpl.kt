@@ -5,10 +5,10 @@ import com.google.gson.Gson
 import com.justappz.aniyomitv.data.remote.ApiService
 import com.justappz.aniyomitv.data.remote.mapper.toData
 import com.justappz.aniyomitv.data.remote.mapper.toDomain
-import com.justappz.aniyomitv.domain.model.AnimeDomain
-import com.justappz.aniyomitv.domain.model.AnimeRequestDomain
-import com.justappz.aniyomitv.domain.model.EpisodesDomain
-import com.justappz.aniyomitv.domain.model.EpisodesRequestDomain
+import com.justappz.aniyomitv.domain.model.anime.AnimeDomain
+import com.justappz.aniyomitv.domain.model.anime.AnimeRequestDomain
+import com.justappz.aniyomitv.domain.model.episodes.EpisodesDomain
+import com.justappz.aniyomitv.domain.model.episodes.EpisodesRequestDomain
 import com.justappz.aniyomitv.domain.repo.AllAnimeRepo
 import javax.inject.Inject
 

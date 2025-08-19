@@ -1,4 +1,4 @@
-package com.justappz.aniyomitv.domain.model
+package com.justappz.aniyomitv.domain.model.episodes
 
 import com.google.gson.annotations.SerializedName
 
