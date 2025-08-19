@@ -1,6 +1,7 @@
 package com.justappz.aniyomitv.presentation.fragments
 
 import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,10 +13,11 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.GridLayoutManager
+import com.justappz.aniyomitv.IntentKeys
 import com.justappz.aniyomitv.databinding.FragmentExploreBinding
 import com.justappz.aniyomitv.domain.model.anime.AnimeDomain
 import com.justappz.aniyomitv.domain.model.anime.AnimeUiState
-import com.justappz.aniyomitv.domain.model.episodes.EpisodesUiState
+import com.justappz.aniyomitv.presentation.EpisodesActivity
 import com.justappz.aniyomitv.presentation.adapter.AnimeAdapter
 import com.justappz.aniyomitv.presentation.viewmodel.AnimeViewModel
 import com.justappz.aniyomitv.utils.ToastUtils
@@ -64,7 +66,9 @@ class ExploreFragment : Fragment() {
 
         animeAdapter = AnimeAdapter(emptyList()).apply {
             onItemClick = { anime, _ ->
-                viewModel.fetchEpisodesList(anime.id!!)
+                startActivity(Intent(parentActivity, EpisodesActivity::class.java).apply {
+                    putExtra(IntentKeys.ANIME_ID, anime.id)
+                })
             }
         }
 
@@ -72,7 +76,6 @@ class ExploreFragment : Fragment() {
         binding.rvAnime.adapter = animeAdapter
 
         collectAnimeList()
-        collectEpisodesList()
         viewModel.fetchAnimeList()
     }
 
@@ -84,17 +87,17 @@ class ExploreFragment : Fragment() {
                     when (state) {
                         is AnimeUiState.Loading -> {
                             // show loading indicator
-                            binding.progessbarLoading.visibility = View.VISIBLE
+                            binding.progressbarLoading.visibility = View.VISIBLE
                         }
 
                         is AnimeUiState.Success -> {
-                            binding.progessbarLoading.visibility = View.GONE
+                            binding.progressbarLoading.visibility = View.GONE
                             val animeList = state.data
                             setAnimeList(animeList)
                         }
 
                         is AnimeUiState.Error -> {
-                            binding.progessbarLoading.visibility = View.GONE
+                            binding.progressbarLoading.visibility = View.GONE
                             ToastUtils.showToast(state.message, parentActivity)
                         }
                     }
@@ -111,31 +114,5 @@ class ExploreFragment : Fragment() {
     }
     //endregion
 
-    //region collectEpisodesList
-    private fun collectEpisodesList() {
-        viewLifecycleOwner.lifecycleScope.launch {
-            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.uiEpisodesState.collect { state ->
-                    when (state) {
-                        is EpisodesUiState.Loading -> {
-                            // show loading indicator
-//                            binding.progessbarLoading.visibility = View.VISIBLE
-                        }
-
-                        is EpisodesUiState.Success -> {
-//                            binding.progessbarLoading.visibility = View.GONE
-                            val episodeList = state.data
-                        }
-
-                        is EpisodesUiState.Error -> {
-//                            binding.progessbarLoading.visibility = View.GONE
-                            ToastUtils.showToast(state.message, parentActivity)
-                        }
-                    }
-                }
-            }
-        }
-    }
-    //endregion
 
 }

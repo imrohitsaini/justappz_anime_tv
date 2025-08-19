@@ -24,18 +24,18 @@
         android:id="@+id/tvAnimeName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_4dp"
         android:gravity="start"
         android:textColor="@color/white"
         android:maxLines="3"
         android:minLines="1"
-        android:layout_marginStart="@dimen/_4dp"
-        android:layout_marginBottom="@dimen/_4dp"
-        android:background="@color/fifty_percent_black"
+        android:paddingStart="@dimen/_4dp"
+        android:paddingBottom="@dimen/_4dp"
+        android:background="@color/black_alpha15"
         android:fontFamily="@font/opensans_semicondensed_bold"
         app:layout_constraintEnd_toEndOf="@id/ivAnimeThumbnail"
         app:layout_constraintStart_toStartOf="@id/ivAnimeThumbnail"
         app:layout_constraintBottom_toBottomOf="@id/ivAnimeThumbnail"
-        tools:text="AllAnime" />
+        tools:text="AllAnime"
+        tools:ignore="RtlSymmetry" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
