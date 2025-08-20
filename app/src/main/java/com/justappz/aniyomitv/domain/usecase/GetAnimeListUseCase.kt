@@ -14,7 +14,7 @@ class GetAnimeListUseCase @Inject constructor(
             query = RequestQueries.POPULAR_ANIME_QUERY,
             variables = AnimeRequestDomain.Variables(
                 type = "anime",
-                size = 20,
+                size = 50,
                 dateRange = 7,
                 page = 1
             )
