@@ -18,7 +18,7 @@ class AnimeAdapter(
         var thumbnailUrl = anime.thumbnail
 
         if (thumbnailUrl?.startsWith("mcovers") == true) {
-            thumbnailUrl = "https://wp.youtube-anime.com/aln.youtube-anime.com/$thumbnailUrl?w=150"
+            thumbnailUrl = "https://wp.youtube-anime.com/aln.youtube-anime.com/$thumbnailUrl?w=250"
         }
 
         // Load image using Glide
