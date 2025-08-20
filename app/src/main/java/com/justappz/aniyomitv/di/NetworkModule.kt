@@ -6,6 +6,7 @@ import com.justappz.aniyomitv.data.remote.repo.AllAnimeRepoImpl
 import com.justappz.aniyomitv.domain.repo.AllAnimeRepo
 import com.justappz.aniyomitv.domain.usecase.GetAnimeListUseCase
 import com.justappz.aniyomitv.domain.usecase.GetEpisodeListUseCase
+import com.justappz.aniyomitv.domain.usecase.GetStreamsListUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -30,5 +31,9 @@ object NetworkModule {
     @Provides
     fun provideGetEpisodeListUseCase(repository: AllAnimeRepo): GetEpisodeListUseCase =
         GetEpisodeListUseCase(repository)
+
+    @Provides
+    fun provideGetStreamsListUseCase(repository: AllAnimeRepo): GetStreamsListUseCase =
+        GetStreamsListUseCase(repository)
 
 }

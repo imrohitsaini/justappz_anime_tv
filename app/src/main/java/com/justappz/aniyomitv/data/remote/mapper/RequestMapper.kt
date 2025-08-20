@@ -2,8 +2,10 @@ package com.justappz.aniyomitv.data.remote.mapper
 
 import com.justappz.aniyomitv.data.remote.model.anime.AllAnimeRequest
 import com.justappz.aniyomitv.data.remote.model.episodes.EpisodesRequest
+import com.justappz.aniyomitv.data.remote.model.streams.StreamsRequest
 import com.justappz.aniyomitv.domain.model.anime.AnimeRequestDomain
 import com.justappz.aniyomitv.domain.model.episodes.EpisodesRequestDomain
+import com.justappz.aniyomitv.domain.model.streams.StreamsRequestDomain
 
 fun AnimeRequestDomain.toData(): AllAnimeRequest {
     return AllAnimeRequest(
@@ -22,6 +24,17 @@ fun EpisodesRequestDomain.toData(): EpisodesRequest {
         query = this.query,
         variables = EpisodesRequest.Variables(
             id = this.variables.id
+        )
+    )
+}
+
+fun StreamsRequestDomain.toData(): StreamsRequest {
+    return StreamsRequest(
+        query = this.query,
+        variables = StreamsRequest.Variables(
+            id = this.variables.id,
+            translationType = this.variables.translationType,
+            episodeString = this.variables.episodeString
         )
     )
 }

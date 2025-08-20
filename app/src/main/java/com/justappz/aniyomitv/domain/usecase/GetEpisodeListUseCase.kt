@@ -1,6 +1,6 @@
 package com.justappz.aniyomitv.domain.usecase
 
-import com.justappz.aniyomitv.constants.Constants
+import com.justappz.aniyomitv.constants.RequestQueries
 import com.justappz.aniyomitv.domain.model.episodes.EpisodesDomain
 import com.justappz.aniyomitv.domain.model.episodes.EpisodesRequestDomain
 import com.justappz.aniyomitv.domain.repo.AllAnimeRepo
@@ -11,7 +11,7 @@ class GetEpisodeListUseCase @Inject constructor(
 ) {
     suspend operator fun invoke(queryId: String): EpisodesDomain {
         return repository.getEpisodesList(EpisodesRequestDomain(
-            query = Constants.EPISODE_QUERY,
+            query = RequestQueries.EPISODE_QUERY,
             variables = EpisodesRequestDomain.Variables(
                 id = queryId
             )

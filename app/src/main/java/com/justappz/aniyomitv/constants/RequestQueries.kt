@@ -1,6 +1,6 @@
 package com.justappz.aniyomitv.constants
 
-object Constants {
+object RequestQueries {
     const val POPULAR_ANIME_QUERY = """
         query(
             ${'$'}type: VaildPopularTypeEnumType!
@@ -46,5 +46,21 @@ object Constants {
             availableEpisodesDetail
         }
     }
-"""
+    """
+
+    const val EPISODE_SOURCE_QUERY = """
+    query(
+        ${'$'}showId: String!,
+        ${'$'}translationType: VaildTranslationTypeEnumType!,
+        ${'$'}episodeString: String!
+    ) {
+        episode(
+            showId: ${'$'}showId
+            translationType: ${'$'}translationType
+            episodeString: ${'$'}episodeString
+        ) {
+            sourceUrls
+        }
+    }
+    """
 }

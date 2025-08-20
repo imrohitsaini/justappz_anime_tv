@@ -3,9 +3,11 @@ package com.justappz.aniyomitv.data.remote.mapper
 import com.justappz.aniyomitv.data.remote.model.anime.AllAnimeResponse
 import com.justappz.aniyomitv.data.remote.model.episodes.EpisodesResponse
 import com.justappz.aniyomitv.data.remote.model.episodes.Season
+import com.justappz.aniyomitv.data.remote.model.streams.StreamsResponse
 import com.justappz.aniyomitv.domain.model.anime.AnimeDomain
 import com.justappz.aniyomitv.domain.model.episodes.EpisodesDomain
 import com.justappz.aniyomitv.domain.model.episodes.SeasonDomain
+import com.justappz.aniyomitv.domain.model.streams.StreamsDomain
 
 fun AllAnimeResponse.toDomain(): List<AnimeDomain> {
     val data = this.data ?: return emptyList()
@@ -48,4 +50,21 @@ fun EpisodesResponse.toDomain(): EpisodesDomain? {
             year = show.season?.year,
         )
     )
+}
+
+fun StreamsResponse.toDomain(): List<StreamsDomain> {
+    val data = this.data ?: return emptyList()
+    val episode = data.episode ?: return emptyList()
+    val streams = episode.sourceUrls
+
+    return streams.map { stream ->
+        StreamsDomain(
+            sourceUrl = stream.sourceUrl,
+            priority = stream.priority,
+            sourceName = stream.sourceName,
+            type = stream.type,
+            className = stream.className,
+            streamerId = stream.streamerId
+        )
+    }
 }

@@ -3,7 +3,6 @@ package com.justappz.aniyomitv.presentation.fragments
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -85,7 +84,7 @@ class ExploreFragment : Fragment() {
     private fun collectAnimeList() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.uiState.collect { state ->
+                viewModel.animeState.collect { state ->
                     when (state) {
                         is AnimeUiState.Loading -> {
                             // show loading indicator

@@ -9,6 +9,8 @@ import com.justappz.aniyomitv.domain.model.anime.AnimeDomain
 import com.justappz.aniyomitv.domain.model.anime.AnimeRequestDomain
 import com.justappz.aniyomitv.domain.model.episodes.EpisodesDomain
 import com.justappz.aniyomitv.domain.model.episodes.EpisodesRequestDomain
+import com.justappz.aniyomitv.domain.model.streams.StreamsDomain
+import com.justappz.aniyomitv.domain.model.streams.StreamsRequestDomain
 import com.justappz.aniyomitv.domain.repo.AllAnimeRepo
 import javax.inject.Inject
 
@@ -37,4 +39,11 @@ class AllAnimeRepoImpl @Inject constructor(
         return episodes
     }
 
+    override suspend fun getStreamsList(streamsRequestDomain: StreamsRequestDomain): List<StreamsDomain> {
+        val json = Gson().toJson(streamsRequestDomain.toData())
+        Log.d("AnimeRepo", "Streams Request JSON: $json")
+        val response = apiService.getStreams(streamsRequestDomain.toData())
+        Log.d("AnimeRepo", "Streams Response: ${Gson().toJson(response)}")
+        return response.toDomain()
+    }
 }
