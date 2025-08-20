@@ -66,4 +66,9 @@ dependencies {
 
     // Lifecycle KTX for lifecycleScope
     implementation(libs.androidx.lifecycle.runtime.ktx)
+
+    // Exoplayer for media playback
+    implementation(libs.androidx.media3.exoplayer)
+    implementation(libs.androidx.media3.exoplayer.dash)
+    implementation(libs.androidx.media3.ui)
 }

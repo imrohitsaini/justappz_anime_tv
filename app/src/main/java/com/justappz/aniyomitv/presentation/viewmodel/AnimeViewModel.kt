@@ -66,5 +66,4 @@ class AnimeViewModel @Inject constructor(
         }
     }
 
-
 }

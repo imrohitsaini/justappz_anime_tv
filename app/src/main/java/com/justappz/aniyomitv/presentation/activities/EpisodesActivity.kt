@@ -1,6 +1,7 @@
 package com.justappz.aniyomitv.presentation.activities
 
 import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.activity.viewModels
@@ -17,10 +18,13 @@ import com.justappz.aniyomitv.databinding.ActivityEpisodesBinding
 import com.justappz.aniyomitv.domain.model.episodes.EpisodesDomain
 import com.justappz.aniyomitv.domain.model.episodes.EpisodesUiState
 import com.justappz.aniyomitv.domain.model.streams.StreamsUiState
+import com.justappz.aniyomitv.player.activity.PlayerActivity
 import com.justappz.aniyomitv.presentation.adapter.EpisodeAdapter
 import com.justappz.aniyomitv.presentation.viewmodel.AnimeViewModel
 import com.justappz.aniyomitv.utils.ToastUtils
+import com.justappz.aniyomitv.utils.toJsonArray
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
@@ -63,6 +67,17 @@ class EpisodesActivity : AppCompatActivity() {
         episodeAdapter = EpisodeAdapter(emptyList()).apply {
             onItemClick = { episode, _ ->
                 viewModel.fetchStreamsList(animeId!!, episode)
+                lifecycleScope.launch {
+                    viewModel.streamsState.collect { state ->
+                        if (state is StreamsUiState.Success) {
+                            val intent = Intent(activity, PlayerActivity::class.java)
+                            val streamsJson = state.data.toJsonArray().toString()
+                            intent.putExtra(IntentKeys.STREAM_LIST, streamsJson)
+                            startActivity(intent)
+                            this.cancel()
+                        }
+                    }
+                }
             }
         }
 
@@ -116,7 +131,6 @@ class EpisodesActivity : AppCompatActivity() {
 
                         is StreamsUiState.Success -> {
                             binding.progressbarLoading.visibility = View.GONE
-                            val streams = state.data
                         }
 
                         is StreamsUiState.Error -> {
